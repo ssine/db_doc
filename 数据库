@@ -15,7 +15,7 @@ Backpack(backpack_id, name, volume, role_id);
 Bill(bill_id, time, deposit, money, role_id);
 
 一个角色至少在一个队伍里，一个队伍可以有多个人,在角色中创建外键
-Team(team_id,leader);
+Team(team_id, leader);
 
 
 Dungeons(dungeons_id, name);

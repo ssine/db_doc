@@ -438,8 +438,7 @@
 </p><h3 id="section" class="h2" data-line="106" data-heading-depth="2" style="display:block"><span data-line="106"></span><span class="heading-before"><span class="heading-label">3.1</span>.&#8194;</span><span data-line="106"></span>用户登陆、注册与创建角色</h3><h4 id="section" class="h3" data-line="108" data-heading-depth="3" style="display:block"><span data-line="108"></span><span class="heading-before"><span class="heading-label">3.1.1</span>.&#8194;</span><span data-line="108"></span>用户登录注册</h4>
 <p class="p noindent" data-line="110"><span data-line="110"></span>登录注册页面前端部分内容，主要是用户账号和密码在js代码里做对应的正则匹配，这是验证的第一步，保证用户输入格式的正确性同时也从一方面减少用户向后台发送没必要的错误请求。前端向后端请求的方式使用POST。 在后台接收前端传送的信息同样要经过验证正则的规则匹配步骤，因为有可能一些人并不是通过合法的方式进行访问，可以减少没必要的数据库查询。
 </p><h4 id="section" class="h3" data-line="112" data-heading-depth="3" style="display:block"><span data-line="112"></span><span class="heading-before"><span class="heading-label">3.1.2</span>.&#8194;</span><span data-line="112"></span>用户密码安全性</h4>
-<p class="p noindent" data-line="114"><span data-line="114"></span> 
-由于很多人习惯使用相同的密码，为了降低撞库的风险，不应当使用明文存储密码。 密码的保存使用“密钥<span data-line="115"></span> <span data-line="115"></span>+ 不可逆加密算”，使用如 sha1，sha256 等不可逆的加密算法进行加密后再存入数据库。
+<p class="p noindent" data-line="114"><span data-line="114"></span>由于很多人习惯使用相同的密码，为了降低撞库的风险，不应当使用明文存储密码。 密码的保存使用“密钥<span data-line="114"></span> <span data-line="114"></span>+ 不可逆加密算”，使用如 sha1，sha256 等不可逆的加密算法进行加密后再存入数据库。
 </p><h4 id="section" class="h3" data-line="116" data-heading-depth="3" style="display:block"><span data-line="116"></span><span class="heading-before"><span class="heading-label">3.1.3</span>.&#8194;</span><span data-line="116"></span>登录状态的保存</h4>
 <p class="p noindent" data-line="118"><span data-line="118"></span>由于http协议是无状态的，所以用户的登录状态就要靠后台相应的数据来记录，用户登录成功后在 seesion 中保存登录用户，然后将该状态通过 cookie 返回到客户端，之后通过比对 cookie 和 seesion 信息来验证用户是否已登录。
 </p><h4 id="section" class="h3" data-line="120" data-heading-depth="3" style="display:block"><span data-line="120"></span><span class="heading-before"><span class="heading-label">3.1.4</span>.&#8194;</span><span data-line="120"></span>密码找回功能</h4>
@@ -484,31 +483,115 @@
 <p class="p noindent" data-line="173"><span data-line="173"></span>进行多人联机需要获取所有其他玩家的状态（位置、朝向、动作等），这样的同步通过在后端记录在线玩家的状态完成。 这些状态并不需要被存入数据库，因为没有持久化的必要。 前端每隔一定时间就与后端进行同步，来更新所有玩家的状态。
 </p>
 <p class="p indent" data-line="175"><span data-line="175"></span>除了在地图上显示所有在线玩家，还有与其他玩家互动的需求。 为此，设置一个消息箱，玩家 A 希望与玩家 B 组队或结为好友时，可以发送消息，玩家 B 看到消息后即可做出应答。
-</p><h2 id="section" class="h1" data-line="177" data-heading-depth="1" style="display:block"><span data-line="177"></span><span class="heading-before"><span class="heading-label">4</span>.&#8194;</span><span data-line="177"></span>数据库设计</h2><h3 id="sec--" class="h2" data-line="179" data-heading-depth="2" style="display:block"><span data-line="179"></span><span class="heading-before"><span class="heading-label">4.1</span>.&#8194;</span><span data-line="179"></span>实体-关系模型</h3><h3 id="section" class="h2" data-line="181" data-heading-depth="2" style="display:block"><span data-line="181"></span><span class="heading-before"><span class="heading-label">4.2</span>.&#8194;</span><span data-line="181"></span>数据库表结构</h3><h2 id="section" class="h1" data-line="183" data-heading-depth="1" style="display:block"><span data-line="183"></span><span class="heading-before"><span class="heading-label">5</span>.&#8194;</span><span data-line="183"></span>技术和环境分析</h2><h3 id="section" class="h2" data-line="185" data-heading-depth="2" style="display:block"><span data-line="185"></span><span class="heading-before"><span class="heading-label">5.1</span>.&#8194;</span><span data-line="185"></span>开发技术</h3><h4 id="section" class="h3" data-line="187" data-heading-depth="3" style="display:block"><span data-line="187"></span><span class="heading-before"><span class="heading-label">5.1.1</span>.&#8194;</span><span data-line="187"></span>前端</h4>
-<ul class="ul list-star compact" data-line="189">
-<li class="li ul-li list-star-li compact-li" data-line="189"><span data-line="189"></span>HTML
+</p><h2 id="section" class="h1" data-line="177" data-heading-depth="1" style="display:block"><span data-line="177"></span><span class="heading-before"><span class="heading-label">4</span>.&#8194;</span><span data-line="177"></span>数据库设计</h2><h3 id="sec--" class="h2" data-line="179" data-heading-depth="2" style="display:block"><span data-line="179"></span><span class="heading-before"><span class="heading-label">4.1</span>.&#8194;</span><span data-line="179"></span>实体-关系模型</h3><h3 id="section" class="h2" data-line="181" data-heading-depth="2" style="display:block"><span data-line="181"></span><span class="heading-before"><span class="heading-label">4.2</span>.&#8194;</span><span data-line="181"></span>数据库表结构</h3>
+<p class="p noindent" data-line="183"><span data-line="183"></span><strong class="strong-star2">用户</strong><span data-line="183"></span>: <span data-line="183"></span><code class="code code1">User(user_id, name, password, identity);</code><span data-line="183"></span>
+</p>
+<p class="p indent" data-line="185"><span data-line="185"></span>由于用户和角色有一一对应关系，用户为主表，在角色中创建外键
+</p>
+<p class="p indent" data-line="187"><span data-line="187"></span><strong class="strong-star2">角色</strong><span data-line="187"></span>: <span data-line="187"></span><code class="code code1">Role(role_id, nickname, hp, exp, atk, def, money, user_id, team_id);</code><span data-line="187"></span>
+</p>
+<p class="p indent" data-line="189"><span data-line="189"></span><strong class="strong-star2">仓库</strong><span data-line="189"></span>和角色为多对一，在仓库中创建外键
+</p>
+<pre class="para-block pre-fenced pre-fenced3" data-line="191" data-line-first="192" style="display:block"><code data-line="192">EquipRepository(rep_id, name, volume, role_id);
+ItemRepository(rep_id, name, volume, role_id);</code></pre>
+<p class="p noindent para-continued" data-line="196"><span data-line="196"></span><strong class="strong-star2">背包</strong><span data-line="196"></span>和角色为多对一，在背包中创建外键
+</p>
+<p class="p indent" data-line="198"><span data-line="198"></span><code class="code code1">Backpack(backpack_id, name, volume, role_id);</code><span data-line="198"></span>
+</p>
+<p class="p indent" data-line="200"><span data-line="200"></span><strong class="strong-star2">账单</strong><span data-line="200"></span>和角色为多对一，在账单中创建外键
+</p>
+<p class="p indent" data-line="202"><span data-line="202"></span><code class="code code1">Bill(bill_id, time, deposit, money, role_id);</code><span data-line="202"></span>
+</p>
+<p class="p indent" data-line="204"><span data-line="204"></span>一个角色至少在一个<span data-line="204"></span><strong class="strong-star2">队伍</strong><span data-line="204"></span>里，一个队伍可以有多个人,在角色中创建外键
+</p>
+<p class="p indent" data-line="206"><span data-line="206"></span><code class="code code1">Team(team_id, leader);</code><span data-line="206"></span>
+</p>
+<p class="p indent" data-line="209"><span data-line="209"></span><code class="code code1">Dungeons(dungeons_id, name);</code><span data-line="209"></span>
+</p>
+<p class="p indent" data-line="211"><span data-line="211"></span><strong class="strong-star2">副本</strong><span data-line="211"></span>和队伍是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="213"><span data-line="213"></span><code class="code code1">Fights(team_id, dungeons_id, result);</code><span data-line="213"></span>
+</p>
+<p class="p indent" data-line="215"><span data-line="215"></span><code class="code code1">Monster(monster_id,name);</code><span data-line="215"></span>
+</p>
+<p class="p indent" data-line="217"><span data-line="217"></span><strong class="strong-star2">怪物</strong><span data-line="217"></span>的等级是弱实体，需要怪物加上其等级才能作为一个实体，因此monster<span data-line="217"></span>_<span data-line="217"></span>id和level共同作为主键
+</p>
+<p class="p indent" data-line="219"><span data-line="219"></span><code class="code code1">MonsterLevel(monster_id, level, hp, atk, def, money, exp);</code><span data-line="219"></span>
+</p>
+<p class="p indent" data-line="221"><span data-line="221"></span><strong class="strong-star2">副本和怪物</strong><span data-line="221"></span>实体是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="223"><span data-line="223"></span><code class="code code1">HaveMonster(dungeon_id,monster_id,max_num);</code><span data-line="223"></span>
+</p>
+<p class="p indent" data-line="225"><span data-line="225"></span><strong class="strong-star2">道具</strong><span data-line="225"></span>: <span data-line="225"></span><code class="code code1">Item(item_id, name, kind, hp, atk, def, price);</code><span data-line="225"></span>
+</p>
+<p class="p indent" data-line="227"><span data-line="227"></span><strong class="strong-star2">装备</strong><span data-line="227"></span>: <span data-line="227"></span><code class="code code1">Equipment(equip_id, name, hp, atk, price);</code><span data-line="227"></span>
+</p>
+<p class="p indent" data-line="229"><span data-line="229"></span>装备和仓库是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="231"><span data-line="231"></span><code class="code code1">StoreEquipment(rep_id, eqiup_id, number);</code><span data-line="231"></span>
+</p>
+<p class="p indent" data-line="233"><span data-line="233"></span>道具和仓库是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="235"><span data-line="235"></span><code class="code code1">StoreItem(rep_id, item_id, number);</code><span data-line="235"></span>
+</p>
+<p class="p indent" data-line="237"><span data-line="237"></span>背包和仓库是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="239"><span data-line="239"></span><code class="code code1">BackpackItem(backpack_id, item_id, number);</code><span data-line="239"></span>
+</p>
+<p class="p indent" data-line="241"><span data-line="241"></span>装备和角色是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="243"><span data-line="243"></span><code class="code code1">DressEquip(role_id, equip_id, number);</code><span data-line="243"></span>
+</p>
+<p class="p indent" data-line="245"><span data-line="245"></span><strong class="strong-star2">宠物</strong><span data-line="245"></span>: <span data-line="245"></span><code class="code code1">Pet(pet_id, kind, price);</code><span data-line="245"></span>
+</p>
+<p class="p indent" data-line="247"><span data-line="247"></span>宠物和角色是多对多关系，因此创建一张新表
+</p>
+<p class="p indent" data-line="249"><span data-line="249"></span><code class="code code1">AdoptPet(role_id, pet_id, number);</code><span data-line="249"></span>
+</p>
+<p class="p indent" data-line="251"><span data-line="251"></span>一个用户有多个购买清单表，在清单中创建外键
+</p>
+<p class="p indent" data-line="253"><span data-line="253"></span><code class="code code1">ShopList(shopping_id, time, total_price, role_id);</code><span data-line="253"></span>
+</p>
+<p class="p indent" data-line="255"><span data-line="255"></span>宠物和购买清单为多对多关系，创建一张新表
+</p>
+<p class="p indent" data-line="257"><span data-line="257"></span><code class="code code1">ShopPet(pet_id,shopping_id,number);</code><span data-line="257"></span>
+</p>
+<p class="p indent" data-line="259"><span data-line="259"></span>装备和购买清单为多对多关系，创建一张新表
+</p>
+<p class="p indent" data-line="261"><span data-line="261"></span><code class="code code1">ShopEquip(equip_id,shopping_id,number);</code><span data-line="261"></span>
+</p>
+<p class="p indent" data-line="263"><span data-line="263"></span>道具和购买清单为多对多关系，创建一张新表
+</p>
+<p class="p indent" data-line="265"><span data-line="265"></span><code class="code code1">ShopItem(item_id,shopping_id,number);</code><span data-line="265"></span>
+</p>
+<p class="p indent" data-line="267"><span data-line="267"></span>每个角色有若干<span data-line="267"></span><strong class="strong-star2">朋友</strong><span data-line="267"></span>，为多对多关系，创建一张新表
+</p>
+<p class="p indent" data-line="269"><span data-line="269"></span><code class="code code1">Friend(role_id_1, role_id_2);</code><span data-line="269"></span>
+</p><h2 id="section" class="h1" data-line="272" data-heading-depth="1" style="display:block"><span data-line="272"></span><span class="heading-before"><span class="heading-label">5</span>.&#8194;</span><span data-line="272"></span>技术和环境分析</h2><h3 id="section" class="h2" data-line="274" data-heading-depth="2" style="display:block"><span data-line="274"></span><span class="heading-before"><span class="heading-label">5.1</span>.&#8194;</span><span data-line="274"></span>开发技术</h3><h4 id="section" class="h3" data-line="276" data-heading-depth="3" style="display:block"><span data-line="276"></span><span class="heading-before"><span class="heading-label">5.1.1</span>.&#8194;</span><span data-line="276"></span>前端</h4>
+<ul class="ul list-star compact" data-line="278">
+<li class="li ul-li list-star-li compact-li" data-line="278"><span data-line="278"></span>HTML
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="190"><span data-line="190"></span>CSS
+<li class="li ul-li list-star-li compact-li" data-line="279"><span data-line="279"></span>CSS
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="191"><span data-line="191"></span>JS (Vue.js)
+<li class="li ul-li list-star-li compact-li" data-line="280"><span data-line="280"></span>JS (Vue.js)
 </li></ul>
-<h4 id="section" class="h3" data-line="193" data-heading-depth="3" style="display:block"><span data-line="193"></span><span class="heading-before"><span class="heading-label">5.1.2</span>.&#8194;</span><span data-line="193"></span>后端</h4>
-<ul class="ul list-star compact" data-line="195">
-<li class="li ul-li list-star-li compact-li" data-line="195"><span data-line="195"></span>Web服务器： uWSGI
+<h4 id="section" class="h3" data-line="282" data-heading-depth="3" style="display:block"><span data-line="282"></span><span class="heading-before"><span class="heading-label">5.1.2</span>.&#8194;</span><span data-line="282"></span>后端</h4>
+<ul class="ul list-star compact" data-line="284">
+<li class="li ul-li list-star-li compact-li" data-line="284"><span data-line="284"></span>Web服务器： uWSGI
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="196"><span data-line="196"></span>Web应用： Django 2.1.4
+<li class="li ul-li list-star-li compact-li" data-line="285"><span data-line="285"></span>Web应用： Django 2.1.4
 </li></ul>
-<h3 id="section" class="h2" data-line="198" data-heading-depth="2" style="display:block"><span data-line="198"></span><span class="heading-before"><span class="heading-label">5.2</span>.&#8194;</span><span data-line="198"></span>开发环境</h3>
-<p class="p noindent" data-line="200"><span data-line="200"></span>Windows 10
-</p><h3 id="section" class="h2" data-line="202" data-heading-depth="2" style="display:block"><span data-line="202"></span><span class="heading-before"><span class="heading-label">5.3</span>.&#8194;</span><span data-line="202"></span>生产环境</h3>
-<ul class="ul list-star compact" data-line="204">
-<li class="li ul-li list-star-li compact-li" data-line="204"><span data-line="204"></span>阿里云服务器 CentOS 7.4
+<h3 id="section" class="h2" data-line="287" data-heading-depth="2" style="display:block"><span data-line="287"></span><span class="heading-before"><span class="heading-label">5.2</span>.&#8194;</span><span data-line="287"></span>开发环境</h3>
+<p class="p noindent" data-line="289"><span data-line="289"></span>Windows 10
+</p><h3 id="section" class="h2" data-line="291" data-heading-depth="2" style="display:block"><span data-line="291"></span><span class="heading-before"><span class="heading-label">5.3</span>.&#8194;</span><span data-line="291"></span>生产环境</h3>
+<ul class="ul list-star compact" data-line="293">
+<li class="li ul-li list-star-li compact-li" data-line="293"><span data-line="293"></span>阿里云服务器 CentOS 7.4
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="205"><span data-line="205"></span>CPU ：1核 Xeon E5 
+<li class="li ul-li list-star-li compact-li" data-line="294"><span data-line="294"></span>CPU ：1核 Xeon E5
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="206"><span data-line="206"></span>硬盘：40G SSD
+<li class="li ul-li list-star-li compact-li" data-line="295"><span data-line="295"></span>硬盘：40G SSD
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="207"><span data-line="207"></span>内存：2G
+<li class="li ul-li list-star-li compact-li" data-line="296"><span data-line="296"></span>内存：2G
 </li></ul>
 <span data-line=""></span></div>
 </body>
