@@ -216,12 +216,6 @@ PVE副本-怪物等级：一个副本中有1个到多个怪物，每个怪物可
 
 购物清单-宠物/装备/道具：一个宠物清单中可以有多个各种宠物/装备/道具，一种宠物/装备/道具可以在多个清单中。
 
-
-
-
-
-
-
 ## 数据库表结构
 
 **用户**: `User(user_id, name, password, identity, phone_num, email, verify_code, expire_time);`
@@ -243,7 +237,7 @@ ItemRepository(rep_id, name, volume, role_id);
 
 `Backpack(backpack_id, name, volume, role_id);`
 
-**账单**和角色为多对一，在账单中创建外键role_id。因为全参与，外键为**not null**。
+**充值清单**和角色为多对一，在账单中创建外键role_id。因为全参与，外键为**not null**。
 
 `Bill(bill_id, time, deposit, money, role_id);`
 
@@ -312,6 +306,39 @@ ItemRepository(rep_id, name, volume, role_id);
 每个角色有若干**朋友**，为多对多关系，创建一张新表
 
 `Friend(role_id_1, role_id_2);`
+
+## 数据库事务
+
+部分敏感的操作（如充值、购买）应保证其ACID性质，避免造成错误和损失。
+
+### 充值
+
+```mysql
+START TRANSACTION;
+INSERT INTO BILL VALUES(...)                               #插入充值账单
+COMMIT;
+```
+
+### 购买装备/道具/宠物
+
+```mysql
+START TRANSACTION;
+INSERT INTO StoreEquipment/StoreItem/AdoptPet VALUES(...); #插入购买的物品
+INSERT INTO ShopList VALUES(...);                          #插入购买账单
+INSERT INTO ShopEquip/ShopItem/ShopPet VALUES(...);        #插入账单表项
+UPDATE Role SET money = ... WHERE role_id = ...   ;        #更新用户金钱
+COMMIT;
+```
+
+### 迁移道具/装备
+
+```MYSQL
+START TRANSACTION;
+从来源删除一个物品（例如StoreEquipment）;              
+插入这个物品到目的（例如DressEquip）    ;
+COMMIT;
+```
+
 
 
 # 技术和环境分析
