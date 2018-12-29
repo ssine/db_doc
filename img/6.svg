@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="198px" preserveAspectRatio="none" style="width:621px;height:198px;" version="1.1" viewBox="0 0 621 198" width="621px" zoomAndPan="magnify"><defs><filter height="300%" id="f1fp0j3wjr6ja3" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--entity 玩家--><ellipse cx="308.5" cy="18" fill="#FEFECE" filter="url(#f1fp0j3wjr6ja3)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M308.5,26 L308.5,53 M295.5,34 L321.5,34 M308.5,53 L295.5,68 M308.5,53 L321.5,68 " fill="none" filter="url(#f1fp0j3wjr6ja3)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="294.5" y="91.0439">玩家</text><ellipse cx="68.397" cy="170.52" fill="#FEFECE" filter="url(#f1fp0j3wjr6ja3)" rx="62.397" ry="16.52" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="26.397" y="176.58">发送好友邀请</text><ellipse cx="228.397" cy="170.52" fill="#FEFECE" filter="url(#f1fp0j3wjr6ja3)" rx="62.397" ry="16.52" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="186.397" y="176.58">发送组队邀请</text><ellipse cx="388.397" cy="170.52" fill="#FEFECE" filter="url(#f1fp0j3wjr6ja3)" rx="62.397" ry="16.52" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="346.397" y="176.58">接受好友邀请</text><ellipse cx="548.397" cy="170.52" fill="#FEFECE" filter="url(#f1fp0j3wjr6ja3)" rx="62.397" ry="16.52" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="506.397" y="176.58">接受组队邀请</text><!--link 玩家 to 发送好友邀请--><path d="M293.487,59.35 C255.335,78.029 153.961,127.6595 101.297,153.4431 " fill="none" id="玩家-发送好友邀请" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="96.6648,155.711,106.5069,155.3461,101.1555,153.5124,102.9892,148.161,96.6648,155.711" style="stroke: #A80036; stroke-width: 1.0;"/><!--link 玩家 to 发送组队邀请--><path d="M293.453,74.101 C278.578,95.9473 256.04,129.0508 241.803,149.9609 " fill="none" id="玩家-发送组队邀请" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="238.897,154.2293,247.2686,149.0413,241.7111,150.0964,240.6559,144.5388,238.897,154.2293" style="stroke: #A80036; stroke-width: 1.0;"/><!--link 玩家 to 接受好友邀请--><path d="M323.547,74.101 C338.422,95.9473 360.96,129.0508 375.197,149.9609 " fill="none" id="玩家-接受好友邀请" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="378.103,154.2293,376.3441,144.5388,375.2889,150.0964,369.7314,149.0413,378.103,154.2293" style="stroke: #A80036; stroke-width: 1.0;"/><!--link 玩家 to 接受组队邀请--><path d="M323.513,59.35 C361.665,78.029 463.039,127.6595 515.703,153.4431 " fill="none" id="玩家-接受组队邀请" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="520.335,155.711,514.0106,148.161,515.8443,153.5124,510.4929,155.3461,520.335,155.711" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml 1
+
+玩家 - -> (发送好友邀请)
+玩家 - -> (发送组队邀请)
+玩家 - -> (接受好友邀请)
+玩家 - -> (接受组队邀请)
+
+@enduml
+
+PlantUML version 1.2018.12(Sun Oct 21 18:15:15 CST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_151-b12
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: GBK
+Language: zh
+Country: CN
+--></g></svg>
