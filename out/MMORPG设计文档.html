@@ -338,7 +338,12 @@
 <div class="tocitem tocitem2" data-toc-target-elem="h2" data-toc-target="sec--" data-toc-depth="2" data-toc-line="[4.1]{.heading-label}.&#8194;\u5B9E\u4F53-\u5173\u7CFB\u6A21\u578B" style="toctarget:sec--"><a href="#sec--" class="localref"><span class="heading-label">4.1</span>.&#8194;实体-关系模型</a></div>
 <div class="tocblock tocblock3">
 <div class="tocitem tocitem3" data-toc-target-elem="h3" data-toc-target="sec-er" data-toc-depth="3" data-toc-line="[4.1.1]{.heading-label}.&#8194;ER\u6A21\u578B\u8BF4\u660E" style="toctarget:sec-er"><a href="#sec-er" class="localref"><span class="heading-label">4.1.1</span>.&#8194;ER模型说明</a></div></div>
-<div class="tocitem tocitem2" data-toc-target-elem="h2" data-toc-target="section" data-toc-depth="2" data-toc-line="[4.2]{.heading-label}.&#8194;\u6570\u636E\u5E93\u8868\u7ED3\u6784" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">4.2</span>.&#8194;数据库表结构</a></div></div>
+<div class="tocitem tocitem2" data-toc-target-elem="h2" data-toc-target="section" data-toc-depth="2" data-toc-line="[4.2]{.heading-label}.&#8194;\u6570\u636E\u5E93\u8868\u7ED3\u6784" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">4.2</span>.&#8194;数据库表结构</a></div>
+<div class="tocitem tocitem2" data-toc-target-elem="h2" data-toc-target="section" data-toc-depth="2" data-toc-line="[4.3]{.heading-label}.&#8194;\u6570\u636E\u5E93\u4E8B\u52A1" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">4.3</span>.&#8194;数据库事务</a></div>
+<div class="tocblock tocblock3">
+<div class="tocitem tocitem3" data-toc-target-elem="h3" data-toc-target="section" data-toc-depth="3" data-toc-line="[4.3.1]{.heading-label}.&#8194;\u5145\u503C" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">4.3.1</span>.&#8194;充值</a></div>
+<div class="tocitem tocitem3" data-toc-target-elem="h3" data-toc-target="section" data-toc-depth="3" data-toc-line="[4.3.2]{.heading-label}.&#8194;\u8D2D\u4E70\u88C5\u5907/\u9053\u5177/\u5BA0\u7269" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">4.3.2</span>.&#8194;购买装备/道具/宠物</a></div>
+<div class="tocitem tocitem3" data-toc-target-elem="h3" data-toc-target="section" data-toc-depth="3" data-toc-line="[4.3.3]{.heading-label}.&#8194;\u8FC1\u79FB\u9053\u5177/\u88C5\u5907" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">4.3.3</span>.&#8194;迁移道具/装备</a></div></div></div>
 <div class="tocitem tocitem1" data-toc-target-elem="h1" data-toc-target="section" data-toc-depth="1" data-toc-line="[5]{.heading-label}.&#8194;\u6280\u672F\u548C\u73AF\u5883\u5206\u6790" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">5</span>.&#8194;技术和环境分析</a></div>
 <div class="tocblock tocblock2">
 <div class="tocitem tocitem2" data-toc-target-elem="h2" data-toc-target="section" data-toc-depth="2" data-toc-line="[5.1]{.heading-label}.&#8194;\u5F00\u53D1\u6280\u672F" style="toctarget:section"><a href="#section" class="localref"><span class="heading-label">5.1</span>.&#8194;开发技术</a></div>
@@ -597,7 +602,7 @@ ItemRepository(rep_id, name, volume, role_id);</code></pre>
 </p>
 <p class="p indent" data-line="275"><span data-line="275"></span><code class="code code1">Backpack(backpack_id, name, volume, role_id);</code><span data-line="275"></span>
 </p>
-<p class="p indent" data-line="277"><span data-line="277"></span><strong class="strong-star2">账单</strong><span data-line="277"></span>和角色为多对一，在账单中创建外键role<span data-line="277"></span>_<span data-line="277"></span>id。因为全参与，外键为<span data-line="277"></span><strong class="strong-star2">not null</strong><span data-line="277"></span>。
+<p class="p indent" data-line="277"><span data-line="277"></span><strong class="strong-star2">充值清单</strong><span data-line="277"></span>和角色为多对一，在账单中创建外键role<span data-line="277"></span>_<span data-line="277"></span>id。因为全参与，外键为<span data-line="277"></span><strong class="strong-star2">not null</strong><span data-line="277"></span>。
 </p>
 <p class="p indent" data-line="279"><span data-line="279"></span><code class="code code1">Bill(bill_id, time, deposit, money, role_id);</code><span data-line="279"></span>
 </p>
@@ -666,31 +671,46 @@ ItemRepository(rep_id, name, volume, role_id);</code></pre>
 <p class="p indent" data-line="343"><span data-line="343"></span>每个角色有若干<span data-line="343"></span><strong class="strong-star2">朋友</strong><span data-line="343"></span>，为多对多关系，创建一张新表
 </p>
 <p class="p indent" data-line="345"><span data-line="345"></span><code class="code code1">Friend(role_id_1, role_id_2);</code><span data-line="345"></span>
-</p><h2 id="section" class="h1" data-line="348" data-heading-depth="1" style="display:block"><span data-line="348"></span><span class="heading-before"><span class="heading-label">5</span>.&#8194;</span><span data-line="348"></span>技术和环境分析</h2><h3 id="section" class="h2" data-line="350" data-heading-depth="2" style="display:block"><span data-line="350"></span><span class="heading-before"><span class="heading-label">5.1</span>.&#8194;</span><span data-line="350"></span>开发技术</h3><h4 id="section" class="h3" data-line="352" data-heading-depth="3" style="display:block"><span data-line="352"></span><span class="heading-before"><span class="heading-label">5.1.1</span>.&#8194;</span><span data-line="352"></span>前端</h4>
-<ul class="ul list-star compact" data-line="354">
-<li class="li ul-li list-star-li compact-li" data-line="354"><span data-line="354"></span>HTML
+</p><h3 id="section" class="h2" data-line="347" data-heading-depth="2" style="display:block"><span data-line="347"></span><span class="heading-before"><span class="heading-label">4.3</span>.&#8194;</span><span data-line="347"></span>数据库事务</h3>
+<p class="p noindent" data-line="349"><span data-line="349"></span>部分敏感的操作（如充值、购买）应保证其ACID性质，避免造成错误和损失。
+</p><h4 id="section" class="h3" data-line="351" data-heading-depth="3" style="display:block"><span data-line="351"></span><span class="heading-before"><span class="heading-label">4.3.1</span>.&#8194;</span><span data-line="351"></span>充值</h4>
+<pre class="para-block pre-fenced pre-fenced3 language-mysql lang-mysql mysql" data-line="353" data-line-first="354" style="display:block"><code data-line="354">START TRANSACTION;
+INSERT INTO BILL VALUES(...)                               #插入充值账单
+COMMIT;</code></pre><h4 id="section" class="h3" data-line="359" data-heading-depth="3" style="display:block"><span data-line="359"></span><span class="heading-before"><span class="heading-label">4.3.2</span>.&#8194;</span><span data-line="359"></span>购买装备/道具/宠物</h4>
+<pre class="para-block pre-fenced pre-fenced3 language-mysql lang-mysql mysql" data-line="361" data-line-first="362" style="display:block"><code data-line="362">START TRANSACTION;
+INSERT INTO StoreEquipment/StoreItem/AdoptPet VALUES(...); #插入购买的物品
+INSERT INTO ShopList VALUES(...);                          #插入购买账单
+INSERT INTO ShopEquip/ShopItem/ShopPet VALUES(...);        #插入账单表项
+UPDATE Role SET money = ... WHERE role_id = ...   ;        #更新用户金钱
+COMMIT;</code></pre><h4 id="section" class="h3" data-line="370" data-heading-depth="3" style="display:block"><span data-line="370"></span><span class="heading-before"><span class="heading-label">4.3.3</span>.&#8194;</span><span data-line="370"></span>迁移道具/装备</h4>
+<pre class="para-block pre-fenced pre-fenced3 language-mysql lang-mysql mysql" data-line="372" data-line-first="373" style="display:block"><code data-line="373">START TRANSACTION;
+从来源删除一个物品（例如StoreEquipment）;              
+插入这个物品到目的（例如DressEquip）    ;
+COMMIT;</code></pre><h2 id="section" class="h1" data-line="381" data-heading-depth="1" style="display:block"><span data-line="381"></span><span class="heading-before"><span class="heading-label">5</span>.&#8194;</span><span data-line="381"></span>技术和环境分析</h2><h3 id="section" class="h2" data-line="383" data-heading-depth="2" style="display:block"><span data-line="383"></span><span class="heading-before"><span class="heading-label">5.1</span>.&#8194;</span><span data-line="383"></span>开发技术</h3><h4 id="section" class="h3" data-line="385" data-heading-depth="3" style="display:block"><span data-line="385"></span><span class="heading-before"><span class="heading-label">5.1.1</span>.&#8194;</span><span data-line="385"></span>前端</h4>
+<ul class="ul list-star compact" data-line="387">
+<li class="li ul-li list-star-li compact-li" data-line="387"><span data-line="387"></span>HTML
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="355"><span data-line="355"></span>CSS
+<li class="li ul-li list-star-li compact-li" data-line="388"><span data-line="388"></span>CSS
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="356"><span data-line="356"></span>JS (Vue.js)
+<li class="li ul-li list-star-li compact-li" data-line="389"><span data-line="389"></span>JS (Vue.js)
 </li></ul>
-<h4 id="section" class="h3" data-line="358" data-heading-depth="3" style="display:block"><span data-line="358"></span><span class="heading-before"><span class="heading-label">5.1.2</span>.&#8194;</span><span data-line="358"></span>后端</h4>
-<ul class="ul list-star compact" data-line="360">
-<li class="li ul-li list-star-li compact-li" data-line="360"><span data-line="360"></span>Web服务器： uWSGI
+<h4 id="section" class="h3" data-line="391" data-heading-depth="3" style="display:block"><span data-line="391"></span><span class="heading-before"><span class="heading-label">5.1.2</span>.&#8194;</span><span data-line="391"></span>后端</h4>
+<ul class="ul list-star compact" data-line="393">
+<li class="li ul-li list-star-li compact-li" data-line="393"><span data-line="393"></span>Web服务器： uWSGI
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="361"><span data-line="361"></span>Web应用： Django 2.1.4
+<li class="li ul-li list-star-li compact-li" data-line="394"><span data-line="394"></span>Web应用： Django 2.1.4
 </li></ul>
-<h3 id="section" class="h2" data-line="363" data-heading-depth="2" style="display:block"><span data-line="363"></span><span class="heading-before"><span class="heading-label">5.2</span>.&#8194;</span><span data-line="363"></span>开发环境</h3>
-<p class="p noindent" data-line="365"><span data-line="365"></span>Windows 10
-</p><h3 id="section" class="h2" data-line="367" data-heading-depth="2" style="display:block"><span data-line="367"></span><span class="heading-before"><span class="heading-label">5.3</span>.&#8194;</span><span data-line="367"></span>生产环境</h3>
-<ul class="ul list-star compact" data-line="369">
-<li class="li ul-li list-star-li compact-li" data-line="369"><span data-line="369"></span>阿里云服务器 CentOS 7.4
+<h3 id="section" class="h2" data-line="396" data-heading-depth="2" style="display:block"><span data-line="396"></span><span class="heading-before"><span class="heading-label">5.2</span>.&#8194;</span><span data-line="396"></span>开发环境</h3>
+<p class="p noindent" data-line="398"><span data-line="398"></span>Windows 10
+</p><h3 id="section" class="h2" data-line="400" data-heading-depth="2" style="display:block"><span data-line="400"></span><span class="heading-before"><span class="heading-label">5.3</span>.&#8194;</span><span data-line="400"></span>生产环境</h3>
+<ul class="ul list-star compact" data-line="402">
+<li class="li ul-li list-star-li compact-li" data-line="402"><span data-line="402"></span>阿里云服务器 CentOS 7.4
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="370"><span data-line="370"></span>CPU ：1核 Xeon E5
+<li class="li ul-li list-star-li compact-li" data-line="403"><span data-line="403"></span>CPU ：1核 Xeon E5
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="371"><span data-line="371"></span>硬盘：40G SSD
+<li class="li ul-li list-star-li compact-li" data-line="404"><span data-line="404"></span>硬盘：40G SSD
 </li>
-<li class="li ul-li list-star-li compact-li" data-line="372"><span data-line="372"></span>内存：2G
+<li class="li ul-li list-star-li compact-li" data-line="405"><span data-line="405"></span>内存：2G
 </li></ul>
 <span data-line=""></span></div>
 </body>
