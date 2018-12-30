@@ -278,7 +278,7 @@ ItemRepository(rep_id, name, volume, role_id);
 
 `Bill(bill_id, time, deposit, money, role_id);`
 
-一个队伍有一个队长，建立外键leader。因为一一对应，外键为**unique**；因为全参与，外键为**not null**。
+一个**队伍**有一个队长，建立外键leader。因为一一对应，外键为**unique**；因为全参与，外键为**not null**。
 
 `Team(team_id, leader);`
 
@@ -324,19 +324,19 @@ ItemRepository(rep_id, name, volume, role_id);
 
 `AdoptPet(role_id, pet_id, number);`
 
-一个用户有多个购买清单表，在清单中创建外键role_id。因为购物清单全参与，外键为**not null**。
+一个用户有多个**购买清单表**，在清单中创建外键role_id。因为购物清单全参与，外键为**not null**。
 
 `ShopList(shopping_id, time, total_price, role_id);`
 
-宠物和购买清单为多对多关系，创建一张新表
+**宠物和购买清单**为多对多关系，创建一张新表
 
 `ShopPet(pet_id, shopping_id, number);`
 
-装备和购买清单为多对多关系，创建一张新表
+**装备和购买清单**为多对多关系，创建一张新表
 
 `ShopEquip(equip_id, shopping_id, number);`
 
-道具和购买清单为多对多关系，创建一张新表
+**道具和购买清单**为多对多关系，创建一张新表
 
 `ShopItem(item_id, shopping_id, number);`
 
@@ -376,7 +376,169 @@ START TRANSACTION;
 COMMIT;
 ```
 
+# 功能模块设计
 
+## 登陆模块
+
+玩家登陆，创建和删除角色。
+
+主要函数：
+
+`signin(user_id, password)`在数据库中验证参数是否对应
+
+`signup(user_id, password)`在数据库中插入新的用户
+
+`signout(user_id, password)`在后端删除相应的类和session
+
+`creater_role()`从数据库中创建角色。
+
+`delete_role()`从数据库中删除角色。
+
+## 玩家模块
+
+实现登陆的玩家管理，在攻打副本，购买等操作。
+
+主要函数：
+
+`player()`构造函数，初始化登陆的玩家，从数据库中读出玩家基本信息。
+
+`getMoney()`从数据库中读出玩家的金钱。
+
+`minusMoney()`从数据库中减去一定数量的金钱。
+
+`addMoney()`在数据库中增加一定数量的金钱。
+
+`minusHp`减少生命值。
+
+`addHp`增加生命值。
+
+`addExp()`在数据库中增加一定数量的经验。
+
+`getExp()`从数据库中查询玩家的经验。
+
+`getTeam()`从数据库读取玩家在哪个小队。
+
+`addFriend()`发出一个好友请求。
+
+`acceptFriend()`接受好友请求，写入数据库。
+
+`joinTeam()`加入一个小队，写记录到数据库。
+
+主要成员变量：
+
+`id`玩家id。
+
+`hp`玩家当前生命值。
+
+`atk`玩家当前攻击力。
+
+`def`玩家当前防御力。
+
+## 管理员模块
+
+管理员继承了玩家的所有属性。可以参加游戏，可以管理游戏。
+
+主要函数：
+
+`modifyPlayer(player, how_to_modidy)`修改玩家相关的数据。
+
+`modifyMonsetr(player, how_to_modidy)`修改怪物相关的数据。
+
+`modifyItem(player, how_to_modidy)`修改道具相关的数据。
+
+`modifyEquip(player, how_to_modidy)`修改道具相关的数据。
+
+`modifyPet(player, how_to_modidy)`修改宠物相关的数据。
+
+## 队伍模块
+
+管理组队
+
+主要函数：
+
+`addMenber()`添加成员记录到数据库和成员变量。
+
+`addLeader()`添加队长记录到数据库和成员变量。
+
+`dissmiss()`队长解散组队。
+
+主要成员变量：
+
+`members`队员
+
+`leader`队长
+
+## 购物模块
+
+用于玩家购买道具/宠物/装备。
+
+主要函数：
+
+`buyItem(player, kind, id)`购买道具/宠物/装备，执行购买事务。
+
+`getPrice(kind, id)`获取道具/宠物/装备的价格。
+
+ ## 怪物模块
+
+用于实现游戏中攻打副本时的怪物管理。
+
+主要函数：
+
+`monsters`构造函数，初始化副本产生的怪物，从数据库中读出怪物基本信息。
+
+`minusHp`减少生命值。
+
+`addHp`增加生命值。
+
+主要成员变量：
+
+`id`怪物id。
+
+`level`怪物等级。
+
+`hp`怪物当前生命值。
+
+`atk`怪物当前攻击力。
+
+`def`怪物当前防御力。
+
+## 副本模块
+
+副本模块管理一次队伍攻打副本的全部内容，包括怪物和队伍。在攻打副本时初始化成员变量。
+
+主要函数：
+
+`dungeon()`初始化所有的怪物和他的位置，分配id；生成对战记录写入数据库。
+
+`getMonster(id)`获取某一个怪物。
+
+`playerWin()`玩家胜利，写记录
+
+主要成员变量：
+
+`monsters`副本中的怪物。
+
+`team_id`对战的队伍。
+
+## 充值模块
+
+此模块本因有第三方接口，在作业中简化。
+
+主要函数：
+
+`deposite(player, money)`执行充值事务。
+
+## 物品迁移模块
+
+用于玩家的物品（道具，装备）在仓库、背包等容器中相互迁移。
+
+主要函数：
+
+`move(player, from, to)`执行迁移事务。
+
+## 视图模块
+
+。。。
 
 # 技术和环境分析
 
