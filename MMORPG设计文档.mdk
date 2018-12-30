@@ -353,6 +353,8 @@ ItemRepository(rep_id, name, volume, role_id);
 ```mysql
 START TRANSACTION;
 INSERT INTO BILL VALUES(...)                               #插入充值账单
+第三方扣款
+UPDATE User SET Money = Money + 充值金额 WHERE user_id =... #增加账户余额
 COMMIT;
 ```
 
@@ -371,8 +373,8 @@ COMMIT;
 
 ```MYSQL
 START TRANSACTION;
-从来源删除一个物品（例如StoreEquipment）;              
-插入这个物品到目的（例如DressEquip）    ;
+从来源位置删除一个物品（例如StoreEquipment）;              
+插入这个物品到目的位置（例如DressEquip）    ;
 COMMIT;
 ```
 
