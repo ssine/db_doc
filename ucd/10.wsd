@@ -1,0 +1,84 @@
+@startuml
+class Player {
+    Integer id
+    Integer hp
+    Integer atk
+    Integer def
+    player()
+    getMoney()
+    minusMoney()
+    addMoney()
+    minusHp()
+    addHp()
+    addExp()
+    getExp()
+    getTeam()
+    addFriend()
+    acceptFriend()
+    joinTeam()
+}
+
+class Sign {
+    signin(user_id, password)
+    signup(user_id, password)
+    signout(user_id, password)
+    creater_role()
+    delete_role()
+}
+
+class GM {
+    modifyPlayer(player, how_to_modidy)
+    modifyMonsetr(player, how_to_modidy)
+    modifyItem(player, how_to_modidy)
+    modifyEquip(player, how_to_modidy)
+    modifyPet(player, how_to_modidy)
+}
+
+class Team {
+    Player members
+    Player leader
+    addMenber()
+    addLeader()
+    dissmiss()
+}
+
+class Shop {
+    buyItem(player, kind, id)
+    getPrice(kind, id)
+}
+
+class Monster {
+    Integer id
+    Integer level
+    Integer hp
+    Integer atk
+    Integer def
+    monsters()
+    minusHp()
+    addHp()
+}
+
+class Dungeon {
+    List<Monster> monsters
+    Integer team_id
+    dungeon()
+    getMonster(id)
+    playerWin()
+}
+
+class Deposit {
+    deposite(player, money)
+}
+
+class Move {
+    move(player, from, to)
+}
+Player <.. Sign
+Player <.. Deposit
+Player <.. Shop
+Player <.. Move
+Player <|-- GM
+Player <.. Team
+Team <.. Dungeon
+Dungeon --> Monster
+@enduml

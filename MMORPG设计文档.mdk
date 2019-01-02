@@ -380,21 +380,21 @@ COMMIT;
 
 # 功能模块设计
 
+~ Figure {caption:模块类图}
+![](./img/10.png){width:100%;}
+~
+
 ## 登陆模块
 
 玩家登陆，创建和删除角色。
 
 主要函数：
 
-`signin(user_id, password)`在数据库中验证参数是否对应
-
-`signup(user_id, password)`在数据库中插入新的用户
-
-`signout(user_id, password)`在后端删除相应的类和session
-
-`creater_role()`从数据库中创建角色。
-
-`delete_role()`从数据库中删除角色。
+* `signin(user_id, password)`在数据库中验证参数是否对应
+* `signup(user_id, password)`在数据库中插入新的用户
+* `signout(user_id, password)`在后端删除相应的类和session
+* `creater_role()`从数据库中创建角色。
+* `delete_role()`从数据库中删除角色。
 
 ## 玩家模块
 
@@ -402,39 +402,25 @@ COMMIT;
 
 主要函数：
 
-`player()`构造函数，初始化登陆的玩家，从数据库中读出玩家基本信息。
-
-`getMoney()`从数据库中读出玩家的金钱。
-
-`minusMoney()`从数据库中减去一定数量的金钱。
-
-`addMoney()`在数据库中增加一定数量的金钱。
-
-`minusHp`减少生命值。
-
-`addHp`增加生命值。
-
-`addExp()`在数据库中增加一定数量的经验。
-
-`getExp()`从数据库中查询玩家的经验。
-
-`getTeam()`从数据库读取玩家在哪个小队。
-
-`addFriend()`发出一个好友请求。
-
-`acceptFriend()`接受好友请求，写入数据库。
-
-`joinTeam()`加入一个小队，写记录到数据库。
+* `player()`构造函数，初始化登陆的玩家，从数据库中读出玩家基本信息。
+* `getMoney()`从数据库中读出玩家的金钱。
+* `minusMoney()`从数据库中减去一定数量的金钱。
+* `addMoney()`在数据库中增加一定数量的金钱。
+* `minusHp()`减少生命值。
+* `addHp()`增加生命值。
+* `addExp()`在数据库中增加一定数量的经验。
+* `getExp()`从数据库中查询玩家的经验。
+* `getTeam()`从数据库读取玩家在哪个小队。
+* `addFriend()`发出一个好友请求。
+* `acceptFriend()`接受好友请求，写入数据库。
+* `joinTeam()`加入一个小队，写记录到数据库。
 
 主要成员变量：
 
-`id`玩家id。
-
-`hp`玩家当前生命值。
-
-`atk`玩家当前攻击力。
-
-`def`玩家当前防御力。
+* `id`玩家id。
+* `hp`玩家当前生命值。
+* `atk`玩家当前攻击力。
+* `def`玩家当前防御力。
 
 ## 管理员模块
 
@@ -442,15 +428,11 @@ COMMIT;
 
 主要函数：
 
-`modifyPlayer(player, how_to_modidy)`修改玩家相关的数据。
-
-`modifyMonsetr(player, how_to_modidy)`修改怪物相关的数据。
-
-`modifyItem(player, how_to_modidy)`修改道具相关的数据。
-
-`modifyEquip(player, how_to_modidy)`修改道具相关的数据。
-
-`modifyPet(player, how_to_modidy)`修改宠物相关的数据。
+* `modifyPlayer(player, how_to_modidy)`修改玩家相关的数据。
+* `modifyMonsetr(player, how_to_modidy)`修改怪物相关的数据。
+* `modifyItem(player, how_to_modidy)`修改道具相关的数据。
+* `modifyEquip(player, how_to_modidy)`修改道具相关的数据。
+* `modifyPet(player, how_to_modidy)`修改宠物相关的数据。
 
 ## 队伍模块
 
@@ -458,17 +440,14 @@ COMMIT;
 
 主要函数：
 
-`addMenber()`添加成员记录到数据库和成员变量。
-
-`addLeader()`添加队长记录到数据库和成员变量。
-
-`dissmiss()`队长解散组队。
+* `addMenber()`添加成员记录到数据库和成员变量。
+* `addLeader()`添加队长记录到数据库和成员变量。
+* `dissmiss()`队长解散组队。
 
 主要成员变量：
 
-`members`队员
-
-`leader`队长
+* `members`队员
+* `leader`队长
 
 ## 购物模块
 
@@ -476,9 +455,8 @@ COMMIT;
 
 主要函数：
 
-`buyItem(player, kind, id)`购买道具/宠物/装备，执行购买事务。
-
-`getPrice(kind, id)`获取道具/宠物/装备的价格。
+* `buyItem(player, kind, id)`购买道具/宠物/装备，执行购买事务。
+* `getPrice(kind, id)`获取道具/宠物/装备的价格。
 
  ## 怪物模块
 
@@ -486,23 +464,17 @@ COMMIT;
 
 主要函数：
 
-`monsters`构造函数，初始化副本产生的怪物，从数据库中读出怪物基本信息。
-
-`minusHp`减少生命值。
-
-`addHp`增加生命值。
+* `monsters()`构造函数，初始化副本产生的怪物，从数据库中读出怪物基本信息。
+* `minusHp()`减少生命值。
+* `addHp()`增加生命值。
 
 主要成员变量：
 
-`id`怪物id。
-
-`level`怪物等级。
-
-`hp`怪物当前生命值。
-
-`atk`怪物当前攻击力。
-
-`def`怪物当前防御力。
+* `id`怪物id。
+* `level`怪物等级。
+* `hp`怪物当前生命值。
+* `atk`怪物当前攻击力。
+* `def`怪物当前防御力。
 
 ## 副本模块
 
@@ -510,17 +482,14 @@ COMMIT;
 
 主要函数：
 
-`dungeon()`初始化所有的怪物和他的位置，分配id；生成对战记录写入数据库。
-
-`getMonster(id)`获取某一个怪物。
-
-`playerWin()`玩家胜利，写记录
+* `dungeon()`初始化所有的怪物和他的位置，分配id；生成对战记录写入数据库。
+* `getMonster(id)`获取某一个怪物。
+* `playerWin()`玩家胜利，写记录
 
 主要成员变量：
 
-`monsters`副本中的怪物。
-
-`team_id`对战的队伍。
+* `monsters`副本中的怪物。
+* `team_id`对战的队伍。
 
 ## 充值模块
 
@@ -540,7 +509,19 @@ COMMIT;
 
 ## 视图模块
 
-。。。
+视图模块负责与用户界面及交互有关的操作。
+
+* `navigate(direction)` 向 `dir` 方向移动角色一格
+* `open_menu(menu_name)` 打开某个菜单
+
+主要成员变量：
+
+* `stat` 视图当前所处状态（主世界、副本、菜单等）
+* `position` 当前角色所在位置
+
+~ Figure {caption:用户界面草图}
+![](./img/UI.png){width:70%;}
+~
 
 # 技术和环境分析
 
