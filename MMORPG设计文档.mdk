@@ -4,6 +4,8 @@ Affiliation   : BUPT
 Toc Depth     : 2
 @if tex {
 Package       : [UTF8]ctex
+Package       : geometry
+Tex Header    : \geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
 }
 
 <style>
@@ -21,7 +23,7 @@ a:hover         {color:#0000EE}
 
 ## MMORPG {#12}
 
-MMORPG，是英文Massive（或Massively）Multiplayer Online Role-PlayingGame的缩写。至今尚未有[MMORPG](https://baike.baidu.com/item/MMORPG)的正式中文译名，而在中国比较常见的译法则是"大型多人在线角色扮演游戏"，是网络游戏的一种。在所有角色扮演游戏中，玩家都要扮演一个虚构角色，并控制该角色的许多活动。
+MMORPG ，是英文 Massive （或 Massively ） Multiplayer Online Role-Playing Game 的缩写。至今尚未有 [MMORPG](https://baike.baidu.com/item/MMORPG) 的正式中文译名，而在中国比较常见的译法则是"大型多人在线角色扮演游戏"，是网络游戏的一种。在所有角色扮演游戏中，玩家都要扮演一个虚构角色，并控制该角色的许多活动。
 
 ## 运行机制 {#13}
 
