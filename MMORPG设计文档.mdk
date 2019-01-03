@@ -265,17 +265,15 @@ PVE副本-怪物等级：一个副本中有1个到多个怪物，每个怪物可
 
 **用户**: `User(user_id, name, password, identity, phone_num, email, verify_code, expire_time);`
 
-<br>
+---
 
 由于**用户**和**角色**有一一对应关系，用户为主表，在角色中创建外键user_id。因为一一对应，外键为**unique**；因为全参与，外键为**not null**。
 
 一个角色至少在一个**队伍**里，一个队伍可以有多个人，在角色中创建外键team_id，外键为**unique**；因为全参与，外键为**not null**。
 
-<br>
-
 **角色**: `Role(role_id, nickname, hp, exp, atk, def, money, user_id, team_id);`
 
-<br>
+---
 
 **仓库**和角色为多对一，在仓库中创建外键role_id。因为全参与，外键为**not null**:
 
@@ -284,13 +282,13 @@ EquipRepository(rep_id, name, volume, role_id);
 ItemRepository(rep_id, name, volume, role_id);
 ```
 
-<br>
+---
 
 **背包**和角色为多对一，在背包中创建外键role_id。因为全参与，外键为**not null**:
 
 `Backpack(backpack_id, name, volume, role_id);`
 
-<br>
+---
 
 **充值清单**和角色为多对一，在账单中创建外键role_id。因为全参与，外键为**not null**:
 
@@ -300,17 +298,17 @@ ItemRepository(rep_id, name, volume, role_id);
 
 `Team(team_id, leader);`
 
-<br>
+---
 
 **副本**: `Dungeons(dungeons_id, name);`
 
-<br>
+---
 
 **副本**和**队伍**是多对多关系，因此创建一张新表，主键为team_id和role_id:
 
 `Fights(team_id, dungeons_id, result);`
 
-<br>
+---
 
 **怪物**: `Monster(monster_id,name);`
 
@@ -318,79 +316,79 @@ ItemRepository(rep_id, name, volume, role_id);
 
 `MonsterLevel(monster_id, level, hp, atk, def, money, exp);`
 
-<br>
+---
 
 **副本和怪物**实体是多对多关系，因此创建一张新表:
 
 `HaveMonster(dungeon_id,monster_id,max_num);`
 
-<br>
+---
 
 **道具**: `Item(item_id, name, kind, hp, atk, def, price);`
 
-<br>
+---
 
 **装备**: `Equipment(equip_id, name, hp, atk, price);`
 
-<br>
+---
 
 **装备和仓库**是多对多关系，因此创建一张新表:
 
 `StoreEquipment(rep_id, eqiup_id, number);`
 
-<br>
+---
 
 **道具和仓库**是多对多关系，因此创建一张新表:
 
 `StoreItem(rep_id, item_id, number);`
 
-<br>
+---
 
 **背包和仓库**是多对多关系，因此创建一张新表:
 
 `BackpackItem(backpack_id, item_id, number);`
 
-<br>
+---
 
 **装备和角色**是多对多关系，因此创建一张新表:
 
 `DressEquip(role_id, equip_id, number);`
 
-<br>
+---
 
 **宠物**: `Pet(pet_id, kind, price);`
 
-<br>
+---
 
 **宠物和角色**是多对多关系，因此创建一张新表:
 
 `AdoptPet(role_id, pet_id, number);`
 
-<br>
+---
 
 一个用户有多个**购买清单表**，在清单中创建外键role_id。因为购物清单全参与，外键为**not null**:
 
 `ShopList(shopping_id, time, total_price, role_id);`
 
-<br>
+---
 
 **宠物和购买清单**为多对多关系，创建一张新表:
 
 `ShopPet(pet_id, shopping_id, number);`
 
-<br>
+---
 
 **装备和购买清单**为多对多关系，创建一张新表:
 
 `ShopEquip(equip_id, shopping_id, number);`
 
-<br>
+---
 
 **道具和购买清单**为多对多关系，创建一张新表:
 
 `ShopItem(item_id, shopping_id, number);`
 
-<br>
+---
 
 每个角色有若干**朋友**，为多对多关系，创建一张新表:
 
